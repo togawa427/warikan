@@ -1,14 +1,26 @@
-FROM node:18.15 as build
+# ビルド環境
+FROM node:18.13.0-bullseye-slim as builder
+WORKDIR /usr/src/app
 
-WORKDIR /app
-COPY package*.json .
+## ビルド必要なパッケージをインストール
+COPY package*.json ./
 RUN npm install
-COPY . .
+
+## ビルドの実施
+COPY . /usr/src/app
 RUN npm run build
 
-FROM node:18.15
-WORKDIR /app
-COPY package.json .
-RUN npm install --only=production
-COPY --from=build /app/dist ./dist
-CMD npm run start:prod
+# 実行環境
+FROM node:18.13.0-bullseye-slim
+ENV NODE_ENV production
+WORKDIR /usr/src/app
+
+## ビルド環境からビルド済みのファイル等をコピーし、当該フォルダのオーナーをnodeユーザーへ変更
+COPY --from=builder --chown=node:node /usr/src/app/ /usr/src/app/ 
+## 動作に必要なパッケージのインストール
+RUN npm ci --only=production
+EXPOSE 3000
+
+## nodeユーザーとして実行
+USER node
+CMD ["node", "dist/main"]
