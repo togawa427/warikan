@@ -1,8 +1,11 @@
-
+###
 POST http://localhost/users HTTP/1.1
 content-type: application/json
 
 {
-    "userName": "tarou",
+    "userName": "jirou",
     "password": "12345"
 }
+
+###
+GET http://localhost/users
