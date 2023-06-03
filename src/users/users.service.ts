@@ -17,6 +17,11 @@ export class UsersService {
 
   async getUsers(): Promise<string> {
     const result = await new UserRepository().getAll();
-    return JSON.stringify(result.Items);
+    return JSON.stringify(result);
+  }
+
+  async createTable(): Promise<string> {
+    const result = await new UserRepository().createTable();
+    return 'テーブル作成';
   }
 }

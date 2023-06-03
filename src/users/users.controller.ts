@@ -8,11 +8,17 @@ export class UsersController {
 
   @Get()
   findAll() {
-    return this.usersService.getUsers();
+    //return this.usersService.getUsers();
+    return 'hello world';
   }
 
   @Post()
   create(@Body() createUser: CreateUserDto) {
     return this.usersService.create(createUser);
+  }
+
+  @Get('/table')
+  createTable() {
+    return this.usersService.createTable();
   }
 }

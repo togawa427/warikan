@@ -9,3 +9,6 @@ content-type: application/json
 
 ###
 GET http://localhost/users
+
+###
+GET http://localhost/users/table
