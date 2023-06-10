@@ -17,6 +17,7 @@ export class UsersService {
 
   async getUsers(): Promise<string> {
     const result = await new UserRepository().getAll();
+    //return 'hello';
     return JSON.stringify(result);
   }
 

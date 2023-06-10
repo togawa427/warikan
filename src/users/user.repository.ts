@@ -19,7 +19,7 @@ const dynamoCreateParams = {
 };
 
 export class UserRepository {
-  private tableName = 'Music';
+  private tableName = 'test_users';
 
   async createTable(): Promise<AWS.DynamoDB.DocumentClient.CreateTableOutput> {
     return await client.createTable(dynamoCreateParams).promise();

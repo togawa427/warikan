@@ -10,5 +10,5 @@ content-type: application/json
 ###
 GET http://localhost/users
 
-###
+### テーブルを作成する
 GET http://localhost/users/table

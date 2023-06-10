@@ -8,8 +8,8 @@ export class UsersController {
 
   @Get()
   findAll() {
-    //return this.usersService.getUsers();
-    return 'hello world';
+    return this.usersService.getUsers();
+    //return 'hello world';
   }
 
   @Post()
